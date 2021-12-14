@@ -2,16 +2,13 @@ package com.hl3hl3.arcoremeasure
 
 import android.opengl.GLSurfaceView
 import android.os.Bundle
-import android.view.GestureDetector
+import android.view.*
 import android.view.GestureDetector.SimpleOnGestureListener
-import android.view.MotionEvent
-import android.view.View
-import android.view.WindowManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.Logger
 import com.google.ar.core.*
 import com.google.ar.core.examples.java.helloar.DisplayRotationHelper
-import kotlinx.android.synthetic.main.activity_measure.*
 import java.util.*
 import java.util.concurrent.ArrayBlockingQueue
 import kotlin.math.sqrt
@@ -21,7 +18,8 @@ class MeasureActivity : AppCompatActivity() {
     private var gestureDetector: GestureDetector? = null
 
     private var displayRotationHelper: DisplayRotationHelper? = null
-
+    private lateinit var tv_result:TextView
+    private var surfaceView:GLSurfaceView? = null
     // Tap handling and UI.
     private val QUEUED_SIZE= 16
     private val queuedSingleTaps = ArrayBlockingQueue<MotionEvent>(QUEUED_SIZE)
@@ -164,6 +162,8 @@ class MeasureActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_measure)
+        tv_result = findViewById(R.id.tv_result)
+        surfaceView = findViewById(R.id.surfaceView)
     }
 
     override fun onResume() {

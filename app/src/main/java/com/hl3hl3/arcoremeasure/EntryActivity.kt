@@ -2,6 +2,7 @@ package com.hl3hl3.arcoremeasure
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.Logger
 import com.google.ar.core.*
@@ -11,7 +12,6 @@ import com.google.ar.core.exceptions.UnavailableApkTooOldException
 import com.google.ar.core.exceptions.UnavailableArcoreNotInstalledException
 import com.google.ar.core.exceptions.UnavailableSdkTooOldException
 import com.google.ar.core.exceptions.UnavailableUserDeclinedInstallationException
-import kotlinx.android.synthetic.main.activity_entry.*
 
 class EntryActivity : AppCompatActivity() {
     private val TAG: String = "EntryActivity"
@@ -72,7 +72,7 @@ class EntryActivity : AppCompatActivity() {
     }
 
     private fun showMessage(message: String) {
-        tvResult.text = message
+        findViewById<TextView>(R.id.tvResult).text = message
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

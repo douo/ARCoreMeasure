@@ -43,6 +43,7 @@ import com.google.ar.core.examples.java.helloar.rendering.BackgroundRenderer;
 import com.google.ar.core.examples.java.helloar.rendering.ObjectRenderer;
 import com.google.ar.core.examples.java.helloar.rendering.PlaneRenderer;
 import com.google.ar.core.examples.java.helloar.rendering.PointCloudRenderer;
+import com.google.ar.core.exceptions.CameraNotAvailableException;
 import com.google.ar.core.exceptions.NotTrackingException;
 import com.google.ar.core.exceptions.UnavailableApkTooOldException;
 import com.google.ar.core.exceptions.UnavailableArcoreNotInstalledException;
@@ -321,7 +322,11 @@ public class ArMeasureActivity extends AppCompatActivity {
 
         showLoadingMessage();
         // Note that order matters - see the note in onPause(), the reverse applies here.
-        session.resume();
+        try {
+            session.resume();
+        }catch(CameraNotAvailableException e){
+            e.printStackTrace();
+        }
         surfaceView.onResume();
         displayRotationHelper.onResume();
     }
